@@ -1,0 +1,5 @@
+<%= if @current_user do %>
+  <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block mt-4 lg:inline-block lg:mt-0 text-indigo-200 hover:text-white mr-4" %>
+<% else %>
+  <%= link "Log in", to: Routes.user_session_path(@conn, :new) , class: "block mt-4 lg:inline-block lg:mt-0 text-indigo-200 hover:text-white mr-4"%>
+<% end %>

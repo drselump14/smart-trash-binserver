@@ -1,0 +1,8 @@
+alias SmartTrashBinServer.Repo
+import Ecto.Query
+alias SmartTrashBinServer.Accounts
+alias SmartTrashBinServer.Accounts.User
+alias SmartTrashBinServer.Factory
+alias SmartTrashBinServer.{TrashBin, TrashCapacityHistory}
+alias SmartTrashBinServer.TrashBinRepo
+alias SmartTrashBinServer.TrashCapacityHistoryRepo

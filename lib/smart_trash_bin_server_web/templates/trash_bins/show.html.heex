@@ -1,0 +1,61 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: Routes.trash_bins_path(@conn, :edit, @trash_bin), class: "torch-button" %>
+    <%= link "Back", to: Routes.trash_bins_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <header class="header">
+      <h3>Trash bin Details</h3>
+    </header>
+    <section class="torch-show-details">
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Sim:</div>
+          <div class="torch-show-data"><%= @trash_bin.sim_id %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Imsi:</div>
+          <div class="torch-show-data"><%= @trash_bin.imsi %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Name:</div>
+          <div class="torch-show-data"><%= @trash_bin.name %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Empty distance:</div>
+          <div class="torch-show-data"><%= @trash_bin.empty_distance %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Sensor and bucket distance:</div>
+          <div class="torch-show-data"><%= @trash_bin.sensor_and_bucket_distance %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Left:</div>
+          <div class="torch-show-data"><%= @trash_bin.left %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Top:</div>
+          <div class="torch-show-data"><%= @trash_bin.top %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Description:</div>
+          <div class="torch-show-data"><%= @trash_bin.description %></div>
+        </div>
+
+        <div class="torch-show-attribute">
+          <div class="torch-show-label">Dead:</div>
+          <div class="torch-show-data"><%= @trash_bin.dead %></div>
+        </div>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<h1>Payment Confirmation</h1>
+
+<ul>
+  <li>
+    <strong>Target Address:</strong>
+    <%= @target_address %>
+  </li>
+
+  <li>
+    <strong>Amount:</strong>
+    <%= @amount %>
+  </li>
+
+  <%= form_for @conn, Routes.payments_path(@conn, :create), fn f -> %>
+    <%= hidden_input(f, :amount, value: @amount) %>
+    <%= hidden_input(f, :target_address, value: @target_address) %>
+    <%= submit("Pay") %>
+  <% end %>
+</ul>
+

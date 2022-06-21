@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "Dashboard", suffix: " · Smart Trash Bin" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+
+  </head>
+  <body>
+    <header>
+      <section>
+        <nav class="flex items-center justify-between flex-wrap bg-indigo-500 p-6" x-data="{ open: true }">
+          <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <span class="font-semibold text-xl tracking-tight">Smart Trash Bin</span>
+          </div>
+          <div class="block lg:hidden">
+            <button @click="open = open" @keydown.escape.window="open = false" @click.away="open = false" class="flex items-center px-3 py-2 border rounded text-indigo-200 border-indigo-400 hover:text-white hover:border-white">
+              <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            </button>
+          </div>
+          <div
+              x-cloak
+              x-show="open"
+              x-transition:enter="transition ease-out duration-100"
+              x-transition:enter-start="transform opacity-0 scale-95"
+              x-transition:enter-end="transform opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-75"
+              x-transition:leave-start="transform opacity-100 scale-100"
+              x-transition:leave-end="transform opacity-0 scale-95"
+              class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
+              <%= if @current_user do %>
+              <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-200 hover:text-white mr-4">
+                Dashboard
+              </a>
+              <% end %>
+              <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+                <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) , class: "block mt-4 lg:inline-block lg:mt-0 text-indigo-200 hover:text-white" %>
+              <% end %>
+            </div>
+            <div class="text-sm">
+              <%= render "_user_menu.html", assigns %>
+            </div>
+          </div>
+        </nav>
+      </section>
+    </header>
+    <%= @inner_content %>
+  </body>
+</html>

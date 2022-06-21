@@ -1,0 +1,10 @@
+こちらのゴミ箱が満杯になります。
+
+場所: <%= @trash_bin_name %>
+満杯度: <%= @capacity_rate %>%
+
+早めに回収をお願いします
+
+最新のゴミ箱の状況は以下のリンクでご確認頂けます
+
+https://www.smart-gomi-bako.tk/

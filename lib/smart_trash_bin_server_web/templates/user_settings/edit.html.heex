@@ -1,0 +1,87 @@
+<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Settings</h1>
+    </div>
+
+    <div>
+      <h3 class="mt-6 text-center text-3xl font-extrabold text-gray-900">メール更新</h3>
+    </div>
+
+    <%= form_for @email_changeset, Routes.user_settings_path(@conn, :update), [class: "w-full max-w-lg"], fn f -> %>
+      <%= if @email_changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <%= label f, :email, "メールアドレス", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+        </div>
+        <div class="md:w-2/3">
+          <%= email_input f, :email, required: true, class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"  %>
+        </div>
+        <%= error_tag f, :email %>
+      </div>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <%= label f, :password, "現在のパスワード", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+        </div>
+        <div class="md:w-2/3">
+          <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+        </div>
+        <%= error_tag f, :current_password %>
+      </div>
+      <div class="md:flex md:items-center">
+        <div class="md:w-1/3"></div>
+        <div class="md:w-2/3">
+          <%= submit "メールを更新する", class: "shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"  %>
+        </div>
+      </div>
+    <% end %>
+    <div>
+      <h3 class="mt-6 text-center text-3xl font-extrabold text-gray-900">パスワード更新</h3>
+    </div>
+
+    <%= form_for @password_changeset, Routes.user_settings_path(@conn, :update), [class: "w-full max-w-lg"], fn f -> %>
+      <%= if @email_changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <%= label f, :password, "新しいパスワード", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+        </div>
+        <div class="md:w-2/3">
+          <%= password_input f, :password, required: true,class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"%>
+        </div>
+        <%= error_tag f, :password %>
+      </div>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <%= label f, :password_confirmation, "新しいパスワード（確認用)", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+        </div>
+        <div class="md:w-2/3">
+          <%= password_input f, :password_confirmation, required: true, name: "current_password", id: "current_password_for_email", class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+        </div>
+        <%= error_tag f, :password_confirmation %>
+      </div>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <%= label f, :current_password, "現在のパスワード", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+        </div>
+        <div class="md:w-2/3">
+          <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+        </div>
+        <%= error_tag f, :current_password %>
+      </div>
+      <div class="md:flex md:items-center">
+        <div class="md:w-1/3"></div>
+        <div class="md:w-2/3">
+          <%= submit "パスワードを更新する", class: "shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

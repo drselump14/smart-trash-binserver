@@ -1,0 +1,13 @@
+<main role="main">
+  <%= if info_flash = get_flash(@conn, :info) do %>
+    <p class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+      <span class="block sm:inline"><%= info_flash %></span>
+    </p>
+  <% end %>
+  <%= if error_flash = get_flash(@conn, :error) do %>
+  <p class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <span class="block sm:inline"><%= error_flash %></span>
+  </p>
+  <% end %>
+  <%= @inner_content %>
+</main>

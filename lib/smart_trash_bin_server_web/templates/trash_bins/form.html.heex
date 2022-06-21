@@ -1,0 +1,86 @@
+<.form let={f} for={@changeset} action={@action} id="torch-form" enctype="multipart/form-data">
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+
+    <div class="torch-form-group">
+      <%= label f, :sim_id %>
+      <div class="torch-form-group-input">
+        <%= text_input f, :sim_id %>
+        <%= error_tag f, :sim_id %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :imsi %>
+      <div class="torch-form-group-input">
+        <%= text_input f, :imsi %>
+        <%= error_tag f, :imsi %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :name %>
+      <div class="torch-form-group-input">
+        <%= text_input f, :name %>
+        <%= error_tag f, :name %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :empty_distance %>
+      <div class="torch-form-group-input">
+        <%= number_input f, :empty_distance %>
+        <%= error_tag f, :empty_distance %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :sensor_and_bucket_distance %>
+      <div class="torch-form-group-input">
+        <%= number_input f, :sensor_and_bucket_distance %>
+        <%= error_tag f, :sensor_and_bucket_distance %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :left %>
+      <div class="torch-form-group-input">
+        <%= number_input f, :left %>
+        <%= error_tag f, :left %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :top %>
+      <div class="torch-form-group-input">
+        <%= number_input f, :top %>
+        <%= error_tag f, :top %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :description %>
+      <div class="torch-form-group-input">
+        <%= text_input f, :description %>
+        <%= error_tag f, :description %>
+      </div>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :dead %>
+      <div class="torch-form-group-input">
+        <%= checkbox f, :dead %>
+        <%= error_tag f, :dead %>
+      </div>
+    </div>
+
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+</.form>

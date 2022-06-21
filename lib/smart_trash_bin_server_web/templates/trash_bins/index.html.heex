@@ -1,0 +1,136 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Trash bin", to: Routes.trash_bins_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Trash bins</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+
+          <div class="field">
+            <label>Sim</label>
+            <%= filter_select(:trash_bin, :sim_id, @conn.params) %>
+            <%= filter_string_input(:trash_bin, :sim_id, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Imsi</label>
+            <%= filter_select(:trash_bin, :imsi, @conn.params) %>
+            <%= filter_string_input(:trash_bin, :imsi, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Name</label>
+            <%= filter_select(:trash_bin, :name, @conn.params) %>
+            <%= filter_string_input(:trash_bin, :name, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Description</label>
+            <%= filter_select(:trash_bin, :description, @conn.params) %>
+            <%= filter_string_input(:trash_bin, :description, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Dead</label>
+            <%= filter_boolean_input(:trash_bin, :dead, @conn.params) %>
+          </div>
+
+
+          <div class="field">
+            <label>Empty distance</label>
+            <%= number_filter_select(:trash_bin, :empty_distance, @conn.params) %>
+            <%= filter_number_input(:trash_bin, :empty_distance, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Sensor and bucket distance</label>
+            <%= number_filter_select(:trash_bin, :sensor_and_bucket_distance, @conn.params) %>
+            <%= filter_number_input(:trash_bin, :sensor_and_bucket_distance, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Left</label>
+            <%= number_filter_select(:trash_bin, :left, @conn.params) %>
+            <%= filter_number_input(:trash_bin, :left, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Top</label>
+            <%= number_filter_select(:trash_bin, :top, @conn.params) %>
+            <%= filter_number_input(:trash_bin, :top, @conn.params) %>
+          </div>
+
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: Routes.trash_bins_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@trash_bins) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+
+              <th><%= table_link(@conn, "Sim", :sim_id) %></th>
+
+              <th><%= table_link(@conn, "Imsi", :imsi) %></th>
+
+              <th><%= table_link(@conn, "Name", :name) %></th>
+
+              <th><%= table_link(@conn, "Empty distance", :empty_distance) %></th>
+
+              <th><%= table_link(@conn, "Sensor and bucket distance", :sensor_and_bucket_distance) %></th>
+
+              <th><%= table_link(@conn, "Left", :left) %></th>
+
+              <th><%= table_link(@conn, "Top", :top) %></th>
+
+              <th><%= table_link(@conn, "Description", :description) %></th>
+
+              <th><%= table_link(@conn, "Dead", :dead) %></th>
+
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for trash_bin <- @trash_bins do %>
+            <tr>
+
+                <td><%= trash_bin.sim_id %></td>
+
+                <td><%= trash_bin.imsi %></td>
+
+                <td><%= trash_bin.name %></td>
+
+                <td><%= trash_bin.empty_distance %></td>
+
+                <td><%= trash_bin.sensor_and_bucket_distance %></td>
+
+                <td><%= trash_bin.left %></td>
+
+                <td><%= trash_bin.top %></td>
+
+                <td><%= trash_bin.description %></td>
+
+                <td><%= trash_bin.dead %></td>
+
+              <td class="torch-actions">
+                <span><%= link "Show", to: Routes.trash_bins_path(@conn, :show, trash_bin) %></span>
+                <span><%= link "Edit", to: Routes.trash_bins_path(@conn, :edit, trash_bin) %></span>
+                <span><%= link "Delete", to: Routes.trash_bins_path(@conn, :delete, trash_bin), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Trash bins match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>
